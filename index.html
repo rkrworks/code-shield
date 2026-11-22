@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodePractice Studio — Online Practice Compiler</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-logo" aria-hidden="true">&lt;/&gt;</div>
+      <div>
+        <h1>CodePractice Studio</h1>
+        <p class="brand-sub">Standalone Multi-Language Practice Compiler</p>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <button id="newFileBtn" type="button" class="btn btn-primary" title="Create a new practice file">+ New File</button>
+      <button id="downloadFileBtn" type="button" class="btn btn-secondary" title="Download active source file">Download Code</button>
+      <button id="exportAllBtn" type="button" class="btn btn-secondary" title="Export all saved practice files as text">Export All (.txt)</button>
+      <button id="themeToggleBtn" type="button" class="btn btn-ghost" title="Toggle Dark / Light Theme">Light Theme</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Saved Files</h2>
+          <span id="savedCountBadge" class="badge">0 files</span>
+        </div>
+        <div id="savedFilesList" class="file-list" role="list"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Quick Practice Snippets</h2>
+        </div>
+        <div class="snippet-list">
+          <button type="button" class="snippet-btn" data-snippet="factorial">
+            <strong>Factorial &amp; Loops</strong>
+            <span>Python &middot; Recursion &amp; iteration practice</span>
+          </button>
+          <button type="button" class="snippet-btn" data-snippet="palindrome">
+            <strong>Palindrome Checker</strong>
+            <span>Java &middot; String reversal &amp; conditionals</span>
+          </button>
+          <button type="button" class="snippet-btn" data-snippet="sorting">
+            <strong>Array Sorting</strong>
+            <span>C &middot; Input arrays &amp; bubble sort</span>
+          </button>
+          <button type="button" class="snippet-btn" data-snippet="hashmap">
+            <strong>Frequency Counter</strong>
+            <span>C++ &middot; Standard map &amp; vectors</span>
+          </button>
+          <button type="button" class="snippet-btn" data-snippet="js_stats">
+            <strong>Array Statistics</strong>
+            <span>JavaScript &middot; Instant browser execution</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="editor-stage">
+      <div class="toolbar">
+        <div class="field-group grow">
+          <label for="fileTitleInput">Program Title</label>
+          <input id="fileTitleInput" type="text" placeholder="e.g., Binary Search Practice" autocomplete="off" />
+        </div>
+
+        <div class="field-group">
+          <label for="languageSelect">Language</label>
+          <select id="languageSelect">
+            <option value="java">Java (OpenJDK)</option>
+            <option value="python">Python 3</option>
+            <option value="c">C (GCC)</option>
+            <option value="cpp">C++ (G++)</option>
+            <option value="javascript">JavaScript (Browser)</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="fontSizeSelect">Font</label>
+          <select id="fontSizeSelect">
+            <option value="13">13px</option>
+            <option value="14" selected>14px</option>
+            <option value="16">16px</option>
+            <option value="18">18px</option>
+          </select>
+        </div>
+
+        <div class="toolbar-buttons">
+          <button id="resetTemplateBtn" type="button" class="btn btn-secondary">Reset</button>
+          <button id="copyCodeBtn" type="button" class="btn btn-secondary">Copy</button>
+          <button id="runCodeBtn" type="button" class="btn btn-run">Run Code (Ctrl+Enter)</button>
+        </div>
+      </div>
+
+      <div class="editor-container">
+        <pre id="lineNumbers" class="editor-gutter" aria-hidden="true">1</pre>
+        <div class="editor-stack">
+          <pre id="codeHighlight" class="editor-highlight" aria-hidden="true"></pre>
+          <textarea
+            id="codeEditor"
+            class="editor-input"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            autocorrect="off"
+            placeholder="Write your code here..."
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="io-grid">
+        <div class="io-card">
+          <div class="io-header">
+            <label for="stdinInput">Standard Input (stdin)</label>
+            <button id="clearStdinBtn" type="button" class="mini-btn">Clear</button>
+          </div>
+          <textarea
+            id="stdinInput"
+            class="io-textarea"
+            rows="5"
+            placeholder="Enter custom program input here (one line per input)..."
+          ></textarea>
+        </div>
+
+        <div class="io-card">
+          <div class="io-header">
+            <span>Compiler Output Console</span>
+            <div class="console-meta">
+              <span id="compilerStatus" class="status-pill status-idle">Ready</span>
+              <button id="clearOutputBtn" type="button" class="mini-btn">Clear</button>
+            </div>
+          </div>
+          <pre id="outputConsole" class="console-output">Write code above and click "Run Code" (or press Ctrl+Enter) to compile and execute.</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>CodePractice Studio &mdash; Standalone Coding Practice Compiler</span>
+    <span>Developed &amp; Maintained by <strong>Kaushik Ram Ravuru</strong></span>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
